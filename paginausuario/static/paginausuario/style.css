@@ -1,8 +1,8 @@
 body {
-    background-color: #83AADE;
+    background-color: #83AADE !important;
     margin: 0;    
 
 }
 .titulo_centrado {
-    text-align: center;
+    text-align: center !important;
 }
