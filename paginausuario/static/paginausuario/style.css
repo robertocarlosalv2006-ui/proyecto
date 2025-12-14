@@ -1,25 +1,25 @@
-.fondo{
+body {
     background-color: #83AADE !important;
-    margin: 0; 
+    margin: 0;  
+
 }
     
-    
 
-.Perfil-img  { 
-    width: 80px !important;
-    height: 80px !important;
-    object-fit: cover !important;
-    border-radius: 50% !important;
+.perfil-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
 
-    position: absolute !important;
-    top: 20px !important;
-    left: 20px !important;
-    
-} 
+    position: absolute;
+    top: 20px;
+    left: 2;
+}
 
 .titulo_centrado {
 
     text-align: center !important;
+    color: red;
 
 }
 
