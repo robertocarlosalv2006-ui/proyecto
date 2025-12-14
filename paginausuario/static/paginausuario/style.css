@@ -2,9 +2,19 @@ body {
     background-color: #83AADE !important;
     margin: 0;  
 
- 
-    text-align: center !important;
+}
+    
+
+.perfil-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
+.titulo_centrado {
 
+    text-align: center !important;
+
+}
 
