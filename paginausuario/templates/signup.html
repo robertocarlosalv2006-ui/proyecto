@@ -8,14 +8,158 @@
         <link rel="stylesheet" href="{% static 'paginausuario/style.css' %}">
  
 </head>
-<body class="fondo">
+
+<body>
+    <div class="encabezado">
+        <h1 class="HOJA_DE_VIDA" > HOJA DE VIDA </h1>
+        <h1 class="linea" > linea</h1>
+    </div>
+    <h3 class="Bienvenido">Bienvenidos </h3>
+    <div class="Datos_personales">
+        <h1 class="subtitulo">Datos personales</h1>
+        <h1 class="linea" > linea</h1>
+        <div class="perfil_hoja_de_vida">
+
+            <div class="columnas">
+                <h1 class="subsubtitulo">Descripcion sobre mi:</h1>
+                <p class="descripcion">Hola soy Roberto Carlos Alvia Delgado, actualmente ando estudiando en la universidad de la uleam tengo conocimiento de varios tema como pseint, python, html,css y aun sigo aprendiendo mas.</p>
+            </div>
+
+            <img src="{% static 'paginausuario/foto_perfil.jpg' %}" alt="Perfil" class="perfil-img">
+        </div>
+            <div class="columnas">
+                <div class="celdas">
+                    <div>
+                        <h3 class="subsubtitulo">APELLIDO: </h3>
+                <h3 class="Datos" >Alvia Delgado</h3>
+                <h3 class="subsubtitulo">NOMBRE: </h3>
+                <h3 class="Datos" > Roberto Carlos</h3>
+                <h3 class="subsubtitulo">NACIONALIDAD</h3>
+                <p class="Datos">Ecuatoriano</p>
+                <h3 class="subsubtitulo">LUGAR NACIMIENTO</h3>
+                <p class="Datos">Pajan</p>
+                <h3 class="subsubtitulo">telefono convencional</h3>
+                <p class="Datos">No</p>
+                <h3 class="subsubtitulo">telefono fijo</h3>
+                <p class="Datos">0987176283</p>
+                <h3 class="subsubtitulo">direccion trabajo</h3>
+                <p class="Datos">NO HAY TRABAJO</p>
+                    </div>
+                    <div class="izquierda">
+                        <h3 class="subsubtitulo">FECHA NACIMIENTO</h3>
+                        <p class="Datos"> 13/06/2006</p>
+                        <h3 class="subsubtitulo">NUMERO CEDULA</h3>
+                        <P class="Datos">1315559508</P>
+                        <h3 class="subsubtitulo">sexo</h3>
+                        <P class="Datos">Masculino</p>
+                        <h3 class="subsubtitulo">estado civil</h3>
+                        <p class="Datos">Soltero</p>
+                        <h3 class="subsubtitulo">licencia conducir</h3>
+                        <p class="Datos">NO</p>
+                        <H3 class="subsubtitulo">direccion domiciliaria</H3>
+                        <p class="Datos">Barrio 5 de agosto</p>
+                        <h3 class="subsubtitulo">sitio web</h3>
+                        <a href="https://proyecto-nf1e.onrender.com" class="links">Hoja de vida</a>
+                    </div>
+                </div>
+                
+                
+                
+                
+
+            </div>
+    </div>
+    <div class="experiencia_laboral">
+        <h1 class="subtitulo">Experiencia Laboral</h1>
+        <h1 class="linea" > linea</h1>
+        <div class="columnas">
+            <h1 class="vacios">!!NO TIENE CAMPO LABORAL!!</h1>
+        </div>
+    </div>
     
-    <h1 class="titulo_centrado"> HOJA DE VIDA </h1>
-    <h2 class="titulo_centrado"> ROBERTO CARLOS ALVIA DELGADO </h2>
-    <img src="{% static 'paginausuario/foto_perfil.jpg' %}" alt="Perfil" width="100">
+    <DIV class="RECONOCIMIENTOS">
+        <h1 class="subtitulo">Reconocimientos del area de trabajo</h1>
+        <h1 class="linea" > linea</h1>
+        <div class="columnas">
+            <h1 class="vacios">!!NO TIENE CAMPO LABORAL!!</h1>
+        </div>
+    </DIV>
+    <div class="proyectos">
+        <H1 class="subtitulo">PROYECTOS</H1>
+        <h1 class="linea" > linea</h1>
+        <details class="detalles_m">
+            <summary class="subsubtitulo">PROYECTOS ACADEMICO</summary>
+            <a href="https://github.com/robertocarlosalv2006-ui/proyecto" class="links">Proyecto de hoja de vida</a>
+        </details>
+        <details class="detalles-m">
+            <summary class="subsubtitulo">PROYECTO DEL TRABAJO</summary>
+            <p>NO HAY NINGUN PROYECTO DE TRABAJO</p>
+        </details>
 
-    {{mytitle}}
+    </div>
+    <div class=" curso_realizado">
+        <h1 class="subtitulo">CURSO REALIZADO</h1>
+        <h1 class="linea" > linea</h1>
 
+        <div class="columnas">
+            <h3 class="subsubtitulo">Certificados de los curso realizado</h3>
+            <div class="celdas">
+                <div class="certificado_m">
+                    <h2 class="nombre_certificado">Domina la IA con gemini</h2>
+                    <img src="{% static 'paginausuario/domina la ia con gemini.png'%}" alt="Perfil" class="img-certificado">
+                    <div class="columnas">
+                        <a href="{% static 'paginausuario/archivos/Domina la IA con gemini.pdf'%}" class="descargar_pdf">Descargar el pdf</a>
+                        <details class="detalles">
+                            <summary>Ver mas</summary>
+                            <p>Domina la IA con Gemini
+                                Curso terminado el 7 de noviembre de 2025
+                                2 Horas I 2 Módulos I Autoevaluación
+                                Contenido desarrollado por
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            <div class="columnas">
+                
+                <div class="celdas">
+                    
+                    <div class="certificado_m">
+                        <h2 class="nombre_certificado">Ingles-A1.1-A-2025</h2>
+                        <img src="{% static 'paginausuario/ingles.png'%}" alt="Perfil" class="img-certificado">
+                        <div class="columnas">
+                            <a href="{% static 'paginausuario/archivos/Alvia-Delgado-Roberto-Carlos-Ingles-A1.1-¿A-2025-Certificados-Normal-Manta-Capacita.pdf'%}" class="descargar_pdf">Descargar el pdf</a>
+                            <details class="detalles">
+                                <summary>Ver mas</summary>
+                                <p>Por haber culminado con éxito y una destacada participación en el curso de Inglés A1.1.
+                                    El mejor legado que podemos tener es la educación, que nos garantiza un mejor futuro.
+                                    01, abril del 2025
+                                </p>
+                            </details>
+                        </div>
+                    </div>
+                    <div class="certificado_m">
+                        <h2 class="nombre_certificado">Introducion a la electricidad</h2>
+                        <h2 class="nombre_certificado">y electronica basica</h2>
+                        <img src="{% static 'paginausuario/primer certificado.png' %}" alt="Perfil" class="img-certificado">
+                        <div class="columnas">
+                            <a href="{% static 'paginausuario/archivos/CERTIFICADO Fundamentos de robotica y tecnologia.pdf'%}" class="descargar_pdf">Descargar el pdf</a>
+                            
+                            <details class="detalles">
+                                <summary>Ver mas</summary>
+                                <p>Este es un certifica fundamentos de robotica y tecnologia basica, Por haber completado satisfactoriamente el curso de, Introducción a la Electricidad y Electrónica Básica demostrando compromiso, dedicación y entusiasmo en el aprendizaje de los fundamentos de robótica y tecnología.</p>
+                            </details>
+                            
+                            
+                        </div> 
+               
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
 </body>
 </html>
 
