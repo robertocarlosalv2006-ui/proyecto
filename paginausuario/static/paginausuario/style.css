@@ -6,10 +6,10 @@ body {
     
 
 .perfil-img {
-    width: 10px;
-    height: 10px;
+    width: 1px;
+    height: 1px;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 10%;
 }
 
 .titulo_centrado {
