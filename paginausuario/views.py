@@ -4,6 +4,6 @@ from django.http import HttpResponse
 
 # Create your views here.
 def paginabienvenida(request):
-    titulo= "yo soy Roberto Alvia soy autista este es mi projecto de hoja de vida. :)"
+    titulo= "yo, soy Roberto Alvia soy autista este es mi projecto de hoja de vida. :)"
 
     return render(request, 'signup.html',{'mytitle':titulo})
