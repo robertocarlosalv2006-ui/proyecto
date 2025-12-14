@@ -78,14 +78,24 @@ WSGI_APPLICATION = 'hojadevida.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://mysite_jdpu_user:bQMIol8PHOd3DojB3GNyGAPFEBVnucw0@dpg-d4ur3l6mcj7s73dagp10-a/mysite_jdpu',
-        conn_max_age=600
-    )
-        
-    
-}
+if DEBUG:
+    # BASE DE DATOS LOCAL
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    # BASE DE DATOS PRODUCCIÓN (Render)
+    DATABASES = {
+        'default': dj_database_url.config(
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+   
+
 
 
 # Password validation
