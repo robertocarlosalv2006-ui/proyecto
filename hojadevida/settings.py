@@ -78,23 +78,24 @@ WSGI_APPLICATION = 'hojadevida.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-if DEBUG:
-    # BASE DE DATOS LOCAL
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+DATABASES = { 
+
+    'default': { 
+
+        'ENGINE': 'django.db.backends.postgresql', 
+
+        'NAME': 'basededatos', 
+
+        'USER': 'postgres', 
+
+        'PASSWORD': 'roberto', 
+
+        'HOST': 'localhost',  
+
+        'PORT': '5432', 
+
     }
-else:
-    # BASE DE DATOS PRODUCCIÓN (Render)
-    DATABASES = {
-        'default': dj_database_url.config(
-            conn_max_age=600,
-            ssl_require=True
-        )
-    }
-   
+}
 
 
 
