@@ -81,10 +81,11 @@ WSGI_APPLICATION = 'hojadevida.wsgi.application'
 
 DATABASES = {
         'default': dj_database_url.config(
-            default='postgresql://mysite_jdpu_user:bQMIol8PHOd3DojB3GNyGAPFEBVnucw0@dpg-d4ur3l6mcj7s73dagp10-a/mysite_jdpu'
-            conn_max_age=600
+            default='postgresql://mysite_jdpu_user:bQMIol8PHOd3DojB3GNyGAPFEBVnucw0@dpg-d4ur3l6mcj7s73dagp10-a/mysite_jdpu',
+            conn_max_age=600,
+            ssl_require=True
         )
-    }
+    },
 
 """ DATABASES = { 
 
