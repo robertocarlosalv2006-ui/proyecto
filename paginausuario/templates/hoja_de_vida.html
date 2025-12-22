@@ -1,0 +1,465 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1 class="HOJA_DE_VIDA">HOJA DE VIDA</h1>
+<section class="fondo_hojadevida py-5">
+    <div class="container">
+        <div class="d_hoja dmargen">
+            <h2 class="Dtitulo">Datos Personales</h2>
+            <div class="espacio_derecha">
+                <a href="{% url 'crear_datos_personales' %}" width="200" class="derecha">
+                    Editar los datos personales
+                </a>
+            </div>
+        </div>    
+
+        <div class="tarjeta-vertical-Azul ">
+            {% if datos %}
+                <div class="dcontenedor">
+                    <div class="col-md-3 text-center mb-4 mb-md-0">
+                        {% if datos.foto %}
+                            <img src="{{ datos.foto.url }}" class="imag" style="max-width: 180px; aspect-ratio: 1/1; object-fit: cover;">
+                        {% else %}
+                            <div class="bg-light rounded-circle d-flex align-items-center justify-content-center border" style="width: 150px; height: 150px; margin: 0 auto;">
+                                <i class="bi bi-person text-secondary fs-1"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-9">
+                        <h3 class="text-primary mb-3">{{ datos.nombres }} </h3>
+                        <h3 class="text-primary mb-3">{{ datos.apellidos }}</h3>
+                        <p class="mb-4"><strong>Descripción:</strong> <span class="text-muted">{{ datos.descripcion }}</span></p>
+                        
+                        <div class="row g-2">
+                            <div class="col-sm-6"><strong>Cédula:</strong> {{ datos.numero_cedula }}</div>
+                            <div class="col-sm-6"><strong>Nacionalidad:</strong> {{ datos.nacionalidad }}</div>
+                            <div class="col-sm-6"><strong>Estado Civil:</strong> {{ datos.estado_civil }}</div>
+                            <div class="col-sm-6"><strong>Fecha Nac.:</strong> {{ datos.fecha_nacimiento }}</div>
+                            <div class="col-sm-6"><strong>Sexo:</strong> {{ datos.sexo }}</div>
+                            <div class="col-sm-6"><strong>Licencia:</strong> {{ datos.licencia_conducir }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="row text-center text-md-start">
+                    <div class="col-md-4 mb-3">
+                        <h6 class="fw-bold"><i class="bi bi-telephone"></i> Teléfonos</h6>
+                        <p class="small mb-0">{{ datos.telefono_convencional }} / {{ datos.telefono_fijo }}</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <h6 class="fw-bold"><i class="bi bi-geo-alt"></i> Domicilio</h6>
+                        <p class="small mb-0">{{ datos.direccion_domiciliaria }}</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <h6 class="fw-bold"><i class="bi bi-globe"></i> Digital</h6>
+                        <p class="small mb-0"><a href="{{ datos.sitio_web }}" target="_blank">{{ datos.sitio_web }}</a></p>
+                    </div>
+                </div>
+
+            {% else %}
+                <div class="alert alert-warning">No hay datos personales registrados.</div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Experiencia laboral_____________________________________________________ -->
+
+<section class="fondo_hojadevida2">
+    <div class="container py-4">
+        <div class="d_hoja mb-4">
+            <h2 class="border-bottom pb-2">Experiencia Laboral</h2>
+            <div class="espacio_derecha">
+                <a href="{% url 'crear_experiencia_laboral' %}" width="200" class="derecha">
+                Añadir Experiencia Laboral
+                </a>
+            </div>
+        </div>
+
+        <div class="experiencias-lista">
+            {% for exp in experiencia %}
+                <div class="card mb-4 shadow-sm border-0 border-start border-primary border-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4 class="text-primary mb-1">{{ exp.nombres_empresa_trabajadas }}</h4>
+                                <h5 class="text-secondary fw-bold">{{ exp.cargos_de_trabajo }}</h5>
+                                <p class="text-muted small">
+                                    <i class="bi bi-calendar"></i> {{ exp.fecha_inicio_gestion }} — {{ exp.fecha_fin_gestion|default:"Actualidad" }}
+                                </p>
+                            </div>
+                            
+                            <div class="col-md-4 text-md-end">
+                                <p class="mb-0"><strong>Ubicación:</strong> {{ exp.lugar_empresa_trabajada }}</p>
+                                {% if exp.sitio_web_empresa %}
+                                    <a href="{{ exp.sitio_web_empresa }}" target="_blank" class="text-decoration-none small">
+                                        <i class="bi bi-geo-alt"></i> Sitio Web
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="mt-3">
+                            <h6 class="fw-bold">Descripción de funciones:</h6>
+                            <p class="text-dark">{{ exp.descripcion_funciones }}</p>
+                        </div>
+
+                        <div class="bg-light p-2 rounded mt-3 d-flex flex-wrap gap-3">
+                            <span><strong>Contacto:</strong> {{ exp.nombre_contacto_empresarial }}</span>
+                            <span><strong>Teléfono:</strong> {{ exp.telefono_contacto_empresarial }}</span>
+                            <span><strong>Email:</strong> {{ exp.email_de_empresa }}</span>
+                        </div>
+                        
+                        <div class="mt-3 d-flex justify-content-end gap-2">
+                             <a href="{% url 'editar_experiencia_laboral' exp.id %}" class="btn btn-sm btn-outline-warning">Editar</a>
+                             <form action="{% url 'eliminar_experiencia_laboral' exp.id %}" method="POST" onsubmit="return confirm('¿Eliminar esta experiencia?');">
+                                 {% csrf_token %}
+                                 <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                             </form>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="alert alert-info text-center">
+                    No hay experiencia laboral registrada aún.
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- RECONOCIMIENTO -->
+<section class="fondo_hojadevida3">
+    <div class="container py-4">
+        <div class="d_hoja mb-4">
+            <h2 class="border-bottom pb-2">Reconocimiento</h2>
+            <div class="espacio_derecha">
+                <a href="{% url 'crear_reconocimiento' %}" width="200" class="derecha">
+                Añadir RECONOCIMIENTO
+                </a>
+            </div>
+        </div>
+
+        <div class="experiencias-lista">
+            {% for exp in reconocimiento %}
+                <div class="card mb-4 shadow-sm border-0 border-start border-primary border-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4 class="text-primary mb-1">Reconocimiento {{ exp.tipo_reconocimiento }}</h4>
+                                <h5 class="text-secondary fw-bold">{{ exp.entidad_patrocinada }}</h5>
+                                <p class="text-muted small">
+                                    <i class="bi bi-calendar"></i> {{ exp.fecha_reconocimiento }}
+                                </p>
+                            </div>
+                            
+                        </div>
+
+                        <hr>
+
+                        <div class="mt-3">
+                            <h6 class="fw-bold">Descripción de reconocimiento:</h6>
+                            <p class="text-dark">{{ exp.descripcion_reconocimiento }}</p>
+                        </div>
+
+                        <div class="bg-light p-2 rounded mt-3 d-flex flex-wrap gap-3">
+                            <span><strong>Contacto:</strong> {{ exp.nombre_contacto_auspicia }}</span>
+                            <span><strong>Teléfono:</strong> {{ exp.telefonocontactoauspicia }}</span>
+                        </div>
+                        
+                        <div class="mt-3 d-flex justify-content-end gap-2">
+                             <a href="{% url 'editar_reconocimiento' exp.id %}" class="btn btn-sm btn-outline-warning">Editar</a>
+                             <form action="{% url 'eliminar_reconocimiento' exp.id %}" method="POST" onsubmit="return confirm('¿Eliminar esta experiencia?');">
+                                 {% csrf_token %}
+                                 <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                             </form>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="alert alert-info text-center">
+                    No hay reconocimiento registrada aún.
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CURSO REALIZADO-->
+<section class="fondo_hojadevida4">
+    <div class="container py-4">
+        <div class="d_hoja mb-4">
+            <h2 class="border-bottom pb-2">Curso Realizado</h2>
+            <div class="espacio_derecha">
+                <a href="{% url 'crear_CursoRealizado' %}" width="200" class="derecha">
+                Añadir Curso Realizado
+                </a>
+            </div>
+        </div>
+
+        <div class="experiencias-lista">
+            {% for exp in curso %}
+                <div class="card mb-4 shadow-sm border-0 border-start border-primary border-4">
+                    <div class="card-body">
+                        <div class="row align-items-start"> <div class="col-md-8 col-8">
+                                <h4 class="text-primary mb-1">Curso {{ exp.nombre_curso }}</h4>
+                                <h5 class="text-secondary fw-bold">{{ exp.entidad_patrocinada }}</h5>
+                                <p class="text-muted small">
+                                    <i class="bi bi-calendar"></i> {{ exp.fecha_inicio }} - {{ exp.fecha_fin }}
+                                    <br>
+                                    <i class="bi bi-clock"></i> TIEMPO DE CURSO: {{ exp.total_horas }} Horas
+                                </p>
+                            </div>
+                            
+                            <div class="col-md-4 col-4 text-end">
+                                {% if exp.ruta_certificado %}
+                                    <a href="{{ exp.ruta_certificado.url }}" target="_blank" class="btn btn-outline-danger btn-sm shadow-sm">
+                                        <i class="bi bi-file-earmark-pdf"></i> <span class="d-none d-md-inline">Descargar PDF</span>
+                                    </a>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <hr>
+
+                        <div class="mt-3">
+                            <h6 class="fw-bold">Descripción: </h6>
+                            <p class="text-dark">{{ exp.descripcion }}</p>
+                        </div>
+
+                        <div class="bg-light p-2 rounded mt-3 d-flex flex-wrap gap-3">
+                            <span><strong>Contacto:</strong> {{ exp.nombre_contacto_auspicia }}</span>
+                            <span><strong>Teléfono:</strong> {{ exp.telefono_contacto_auspicia }}</span>
+                            <span><strong>Email:</strong> {{ exp.email_empresa_patrocinadora }} </span>
+                        </div>
+                        
+                        <div class="mt-3 d-flex justify-content-end gap-2">
+                            <a href="{% url 'editar_CursoRealizado' exp.id %}" class="btn btn-sm btn-outline-warning">Editar</a>
+                            <form action="{% url 'eliminar_CursoRealizado' exp.id %}" method="POST" onsubmit="return confirm('¿Eliminar esta experiencia?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="alert alert-info text-center">
+                    No hay reconocimiento registrada aún.
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTO ACADEMICO -->
+<section class="fondo_hojadevida5">
+    <div class="container py-4">
+        <div class="d_hoja mb-4">
+            <h2 class="border-bottom pb-2">Producto Académico O PROYECTO</h2>
+            <div class="espacio_derecha">
+                <a href="{% url 'crear_ProductoAcademico' %}" width="200" class="derecha">
+                    Añadir Producto Académico
+                </a>
+            </div>
+        </div>
+
+        <div class="experiencias-lista">
+            {% for exp in producto_academico %}
+                <div class="card mb-4 shadow-sm border-0 border-start border-primary border-4">
+                    <div class="card-body">
+                        <div class="row align-items-start"> 
+        
+                            <div class="col-md-8 col-8">
+                                <h4 class="text-primary mb-1">Proyecto {{ exp.nombre_recurso }}</h4>
+                                <p class="text-muted small mb-0">
+                                    <i class="bi bi-calendar"></i> {{ exp.fecha_producto }}
+                                </p>
+                            </div>
+
+                            <div class="col-md-4 col-4 text-end">
+                                {% if exp.proyectoacademico %}
+                                    <a href="{{ exp.proyectoacademico }}" target="_blank" class="dlink">
+                                        <i class="bi bi-geo-alt"></i> 
+                                        <span class="d-none d-md-inline">SITIO WEBS</span>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="card-body pt-0"> <hr class="mt-0">
+
+                        <div class="mt-3">
+                            <h6 class="fw-bold">Descripción: </h6>
+                            <p class="text-dark">{{ exp.descripcion }}</p>
+                        </div>
+                        
+                        <div class="mt-3 d-flex justify-content-end gap-2">
+                            <a href="{% url 'editar_ProductoAcademico' exp.id %}" class="btn btn-sm btn-outline-warning">Editar</a>
+                            <form action="{% url 'eliminar_producto_academico' exp.id %}" method="POST" onsubmit="return confirm('¿Eliminar esta experiencia?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="alert alert-info text-center">
+                    No hay productos académicos registrados aún.
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTO LABORAL -->
+<section class="fondo_hojadevida6">
+    <div class="container py-4">
+        <div class="d_hoja mb-4">
+            <h2 class="border-bottom pb-2">Producto Laboral O PROYECTO</h2>
+            <div class="espacio_derecha">
+                <a href="{% url 'crear_ProductoLaboral' %}" width="200" class="derecha">
+                    Añadir Producto Laboral
+                </a>
+            </div>
+        </div>
+
+        <div class="experiencias-lista ">
+            {% for exp in producto_laboral %}
+                <div class="card mb-4 shadow-sm border-0 border-start border-primary border-4">
+                    <div class="card-body">
+                        <div class="row align-items-start"> 
+        
+                            <div class="col-md-8 col-8">
+                                <h4 class="text-primary mb-1">Proyecto {{ exp.nombre_producto }}</h4>
+                                <p class="text-muted small mb-0">
+                                    <i class="bi bi-calendar"></i> {{ exp.fecha_producto }}
+                                </p>
+                            </div>
+
+                            <div class="col-md-4 col-4 text-end">
+                                {% if exp.proyectolaboral %}
+                                    <a href="{{ exp.proyectolaboral }}" target="_blank" class="dlink">
+                                        <i class="bi bi-geo-alt"></i> 
+                                        <span class="d-none d-md-inline">SITIO WEBS</span>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="card-body pt-0"> <hr class="mt-0">
+
+                        <div class="mt-3">
+                            <h6 class="fw-bold">Descripción: </h6>
+                            <p class="text-dark">{{ exp.descripcion }}</p>
+                        </div>
+                        
+                        <div class="mt-3 d-flex justify-content-end gap-2">
+                            <a href="{% url 'editar_ProductoLaboral' exp.id %}" class="btn btn-sm btn-outline-warning">Editar</a>
+                            <form action="{% url 'eliminar_producto_laboral' exp.id %}" method="POST" onsubmit="return confirm('¿Eliminar esta experiencia?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="alert alert-info text-center">
+                    No hay productos académicos registrados aún.
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!--  ojo -->
+
+<!-- <section class="fondo_hojadevida">
+    <div>
+        <div class="d_hoja">
+            <h2>DATOS PERSONALES</h2>
+            <div class="espacio_derecha">
+                <a href="{% url 'crear_datos_personales' %}" width="200" class="derecha">
+                Editar los datos personales
+            </a>
+            </div>
+            
+        </div>
+        
+        
+        
+        <nav class="datos-hv">
+            
+            {% if datos %}
+
+                
+                
+                <div class="d_datos">
+                    <div class="espacio_izquierda">
+                        <div class="espacio_izquierda">
+                            <div class="descripcion">
+                                <p ><strong>DESCRIPCION:</strong> {{ datos.descripcion }}</p>
+                            </div>
+                        </div>
+                            
+                        <div class="arriba">
+                            <div class="abajo_izquierda">
+                                <p><strong>Nombres:</strong> {{ datos.nombres }}</p>
+                                <p><strong>Apellidos:</strong> {{ datos.apellidos }}</p>
+                                <p><strong>Nacionalidad:</strong> {{ datos.nacionalidad }}</p>
+                                <p><strong>Lugar de nacimiento:</strong> {{ datos.lugar_nacimiento }}</p>
+                                <p><strong>Fecha de nacimiento:</strong> {{ datos.fecha_nacimiento }}</p>
+                                <p><strong>Cédula:</strong> {{ datos.numero_cedula }}</p>
+                                <p><strong>Sexo:</strong> {{ datos.sexo }}</p>
+                                <p><strong>Estado civil:</strong> {{ datos.estado_civil }}</p>
+                                <p><strong>Licencia de conducir:</strong> {{ datos.licencia_conducir }}</p>
+                                <p><strong>Teléfono convencional:</strong> {{ datos.telefono_convencional }}</p>
+                                <p><strong>Teléfono fijo:</strong> {{ datos.telefono_fijo }}</p>
+                                <p><strong>Dirección trabajo:</strong> {{ datos.direccion_trabajo }}</p>
+                                <p><strong>Dirección domicilio:</strong> {{ datos.direccion_domiciliaria }}</p>
+                                <p><strong>Sitio web:</strong>
+                                    <a href="{{ datos.sitio_web }}" target="_blank">
+                                        {{ datos.sitio_web }}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                            
+
+                    </div>
+                </div>
+
+                <div class="super_espacio_izquierda">
+                    {% if datos.foto %}
+                    
+                        <img src="{{ datos.foto.url }}"  class="imag">
+                    {% endif %}
+                </div>
+
+                    
+                    
+                    
+
+            {% else %}
+                <p>No hay datos personales registrados.</p>
+            {% endif %}
+        </nav>
+
+    </div>
+</section> -->
+
+
+{% endblock %}

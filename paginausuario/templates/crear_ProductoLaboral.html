@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="fondo_hojadevida2">
+    <div>
+
+        
+        <div class="d_hoja">
+            <h2 class="d_hoja">Producto academico</h2>
+            <div class="espacio_derecha">
+                <h3 class="derecha">
+                    {% if editando %} Editar {% else %} Agregar {% endif %} PRODUCTO academico
+                </h3>
+                    
+            </div>
+        </div>
+
+        <div>
+            <!-- Aquí mostramos los mensajes -->
+            {% if messages %}
+                <ul class="mensajes">
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                            {{ message }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data" class="datos-hv">
+                {% csrf_token %}
+                <div>
+                    
+                    <div>
+                        <div class="row derecha_izquierdapadding">
+                            {% for field in form %}
+                            <div class="col-md-6 col-12 mb-3">
+                                <label class="form-label fw-bold">{{ field.label }}</label>
+                                {{ field }}
+                                
+                                {% if field.errors %}
+                                    <div class="text-danger small">
+                                        {{ field.errors }}
+                                    </div>
+                                {% endif %}
+
+                                {% if field.help_text %}
+                                    <div class="form-text">{{ field.help_text }}</div>
+                                {% endif %}
+                            </div> {% endfor %}
+                        </div>
+                        <div class="centro arriba">
+                            <a href="{% url 'hoja_de_vida' %}" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-success">
+                                {% if editando %} Guardar Cambios {% else %} Guardar Experiencia {% endif %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+                
+            
+        
+            
+
+            
+        
+    </div>
+    
+</section>
+
+{% endblock %}

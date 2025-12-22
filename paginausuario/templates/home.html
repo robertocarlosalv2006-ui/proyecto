@@ -2,15 +2,13 @@
 {% block content %}
 <main class="container py-5">
     <section class="card card-body">
-        <h1 class="display-1 text-center">Django App</h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quibusdam, dolorem quaerat sapiente possimus atque nesciunt odio modi eveniet enim assumenda voluptates tempore minus dolor fugit, accusantium sequi debitis earum!
-        <div class="text-center">
-            <a class="btn btn-secondary" href="/signin/">
-                Signin
+        <h1 class="Bienvenido">Bienvenido</h1>
+        <p class="arriba">Hola, bienvenido a mi pagina donde cree un proyecto de una hoja de vida creo que esta completo si tiene un error o le falta algo me escribe para arreglar los errores, deseo que le guste esta pagina porque la hice con mucha paciencia</p>
+        <div class="text-center ">
+            <a class="btn btn-secondary" href="{% url 'u_hoja_de_vida'%}">
+                Entra a la hoja de vida
             </a>
-            <a class="btn btn-dark" href="/signup/">
-                Signup
-            </a>
+            
         </div>
     </section>
 </main>

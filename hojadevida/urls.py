@@ -17,17 +17,42 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from paginausuario import views
+from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
+
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home, name='home'),
     path('signup/',views.signup,name='signup'),
-    path('tasks/',views.tasks,name='tasks'),
-    path('tasks/create/',views.create_task,name='create_task'),
-    path('tasks_completed/',views.tasks_completed,name='tasks_completed'),
-    path('tasks/<int:task_id>/',views.task_detail,name='task_detail'),
-    path('tasks/<int:task_id>/complete',views.complete_task,name='complete_task'),
-    path('tasks/<int:task_id>/delete',views.delete_task,name='delete_task'),
-    path('logout/',views.signout,name='logout'),
     path('signin/',views.signin,name='signin'),
-]
+    #aqui
+    path('datos_personales/crear/', views.crear_datos_personales, name='crear_datos_personales'),
+    path('curso/crear/', views.crear_CursoRealizado, name='crear_CursoRealizado'),
+    path('curso/editar/<int:experiencia_id>/', views.crear_CursoRealizado, name='editar_CursoRealizado'),
+    path('curso/eliminar/<int:pk>/', views.eliminar_cursorealizado, name='eliminar_CursoRealizado'),
+    path('experiencia/crear/', views.crear_experiencia_laboral, name='crear_experiencia_laboral'),
+    path('experiencia/editar/<int:experiencia_id>/', views.crear_experiencia_laboral, name='editar_experiencia_laboral'),
+    path('experiencia/eliminar/<int:pk>/', views.eliminar_experiencia_laboral, name='eliminar_experiencia_laboral'),
+    path('producto_laboral/crear/', views.crear_ProductoLaboral, name='crear_ProductoLaboral'),
+    path('producto_laboral/editar/<int:experiencia_id>/', views.crear_ProductoLaboral, name='editar_ProductoLaboral'),
+    path('producto_laboral/eliminar/<int:pk>/', views.eliminar_producto_laboral, name='eliminar_producto_laboral'),
+    path('producto_academico/crear/', views.crear_ProductoAcademico, name='crear_ProductoAcademico'),
+    path('producto_academico/editar/<int:experiencia_id>/', views.crear_ProductoAcademico, name='editar_ProductoAcademico'),
+    path('producto_academico/eliminar/<int:pk>/', views.eliminar_producto_academico, name='eliminar_producto_academico'),
+    path('reconocimiento/crear/', views.crear_reconocimiento, name='crear_reconocimiento'),
+    path('reconocimiento/editar/<int:experiencia_id>/', views.crear_reconocimiento, name='editar_reconocimiento'),
+    path('reconocimietno/eliminar/<int:pk>/', views.eliminar_reconocimiento, name='eliminar_reconocimiento'),
+    path('hoja_de_vida/',views.hoja_de_vida, name='hoja_de_vida'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('hoja-de-vida/',views.u_hoja_de_vida, name='u_hoja_de_vida'),
+    path('hoja-de-vida/<str:invitado>/', views.u_hoja_de_vida, name='u_hoja_de_vida_user'),
+    path('DatosPersonales',views.DatosPersonales, name='DatosPersonales'),
+    
+
+    
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

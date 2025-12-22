@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="HOJA_DE_VIDA">HOJA DE VIDA</h1>
+
+<section class="fondo_hojadevida">
+    <div>
+        <div>
+            <h2 class="d_hoja">DATOS PERSONALES</h2>
+            <!-- Aquí mostramos los mensajes -->
+            {% if messages %}
+                <ul class="mensajes">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                        {{ message }}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data" class="datos-hv">
+                {% csrf_token %}
+                
+                
+                
+                <div class="d_datos">
+                    <div class="espacio_izquierda">
+                        <p>
+                            <strong>DESCRIPCION:</strong> 
+                            {{ form.descripcion }}
+                            {% if form.descripcion.errors %}
+                                <ul class="errorlist">
+                                {% for error in form.descripcion.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            <strong>Nombres:</strong> 
+                            {{ form.nombres }}
+                            {% if form.nombres.errors %}
+                                <ul class="errorlist">
+                                {% for error in form.nombres.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            <strong>Apellidos:</strong> 
+                            {{ form.apellidos }}
+                            {% if form.apellidos.errors %}
+                                <ul class="errorlist">
+                                {% for error in form.apellidos.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            <strong>Fecha de nacimiento:</strong>
+                            {{ form.fecha_nacimiento }}
+                            {% if form.fecha_nacimiento.errors %}
+                                <ul class="errorlist">
+                                {% for error in form.fecha_nacimiento.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            <strong>Cédula:</strong>
+                            {{ form.numero_cedula }}
+                            {% if form.numero_cedula.errors %}
+                                <ul class="errorlist">
+                                {% for error in form.numero_cedula.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            <strong>Sexo:</strong>
+                            {{ form.sexo }}
+                            {% if form.sexo.errors %}
+                                <ul class="errorlist">
+                                {% for error in form.sexo.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            <strong>Estado civil:</strong>
+                            {{ form.estado_civil }}
+                            {% if form.estado_civil.errors %}
+                                <ul class="errorlist">
+                                {% for error in form.estado_civil.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            <strong>Licencia de conducir:</strong>
+                            {{ form.licencia_conducir }}
+                            {% if form.licencia_conducir.errors %}
+                                <ul class="errorlist">
+                                {% for error in form.licencia_conducir.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            <strong>Teléfono convencional:</strong>
+                            {{ form.telefono_convencional }}
+                            {% if form.telefono_convencional.errors %}
+                                <ul class="errorlist">
+                                {% for error in form.telefono_convecional.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            <strong>Teléfono fijo:</strong>
+                            {{ form.telefono_fijo }}
+                            {% if form.numero_fijo.errors %}
+                                <ul class="errorlist">
+                                {% for error in form.telefono_fijo.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            <strong>Dirección trabajo:</strong>
+                            {{ form.direccion_trabajo }}
+                            {% if form.direccion_trabajo.errors %}
+                                <ul class="errorlist">
+                                {% for error in form.direccion_trabajo.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            <strong>Dirección domicilio:</strong>
+                            {{ form.direccion_domiciliaria }}
+                            {% if form.direccion_domiciliaria.errors %}
+                                <ul class="errorlist">
+                                {% for error in form.direccion_domiciliaria.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            <strong>Sitio web:</strong>
+                            {{ form.sitio_web }}
+                            {% if form.sitio_web.errors %}
+                                <ul class="errorlist">
+                                {% for error in form.sitio_web.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </p>
+                    </div>
+                    
+                    <div class="super_espacio_izquierda">
+                        <button type="submit" class="boton">
+                            Guardar cambios
+                        </button>
+                    </div>
+                        
+
+                </div>
+
+
+                <div class="super_espacio_izquierda">
+                    <div class="mitad_espacio_izquierda">
+                        {% if form.instance.foto %}
+                            <img src="{{ form.instance.foto.url }}" class="imag">
+                        {% endif %}
+                            
+                    </div>
+                            
+
+                    <div class="mover_derecha">
+                        <p class="nimg">
+                            <strong>Foto:</strong>
+                            {{ form.foto }}
+                        </p>
+
+                    </div>
+                </div>
+
+                    
+                    
+            </form>
+        </div>
+            
+
+            
+        
+    </div>
+    
+</section>
+
+
+{% endblock %}
