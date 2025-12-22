@@ -323,6 +323,7 @@ def tasks_completed(request):
 
 @login_required
 def task_detail(request, task_id):
+   
    if request.method == 'GET':
         task = get_object_or_404(Task,pk=task_id,user=request.user)
         form = TaskForm(instance=task)
@@ -342,3 +343,10 @@ def task_detail(request, task_id):
             'form':form,
             'error':'Error updating tasks'
             })
+       
+
+
+def crear_usuario_inicial(sender, **kwargs):
+    if not User.objects.filter(username='Roberto').exists():
+        User.objects.create_superuser('Roberto', 'admin@ejemplo.com', 'adminroberto')
+        print("Usuario Roberto creado con éxito")
