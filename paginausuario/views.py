@@ -279,6 +279,13 @@ def signin(request):
                 user.save()
             login(request, user)
             return redirect('hoja_de_vida')
+        else:
+            # Si los datos no son "Roberto", devolvemos el error al formulario
+            return render(request, 'signin.html', {
+                'error': 'Acceso denegado. Solo Roberto tiene permiso.'
+            })
+        
+    return render(request, 'signin.html')
 
 
 def signout(request):
