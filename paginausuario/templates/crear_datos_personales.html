@@ -145,7 +145,18 @@
                                 </ul>
                             {% endif %}
                         </p>
-
+                        <p>
+                            <strong>Nacionalidad:</strong>
+                            {{ form.nacionalidad }}
+                            {% if form.nacionalidad.errors %}
+                                <ul class="errorlist">
+                                {% for error in form.nacionalidad.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                            </strong>
+                        </p>
                         <p>
                             <strong>Dirección trabajo:</strong>
                             {{ form.direccion_trabajo }}
