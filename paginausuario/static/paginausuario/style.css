@@ -40,6 +40,13 @@
 
 }
 
+.fondo_bienvenida {
+    background-color: lightblue;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 0px;
+}
+
 .fondo_hojadevida {
     background-color: wheat;
     margin: 60px 40px 0 40px;
