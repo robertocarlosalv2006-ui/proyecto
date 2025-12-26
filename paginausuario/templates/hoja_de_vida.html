@@ -2,6 +2,10 @@
 {% load static %}
 {% block content %}
 <h1 class="HOJA_DE_VIDA">HOJA DE VIDA</h1>
+
+<body class="fondo_bienvenida">
+    
+</body>
 <section class="fondo_hojadevida py-5">
     <div class="container">
         <div class="d_hoja dmargen">
@@ -213,7 +217,7 @@
                                 <h4 class="text-primary mb-1">Curso {{ exp.nombre_curso }}</h4>
                                 <h5 class="text-secondary fw-bold">{{ exp.entidad_patrocinada }}</h5>
                                 <p class="text-muted small">
-                                    <i class="bi bi-calendar"></i> {{ exp.fecha_inicio }} - {{ exp.fecha_fin }}
+                                    <i class="bi bi-calendar"></i> {{ exp.fecha_inicio }} - {{ exp.fecha_fin|default:"Actualidad }}
                                     <br>
                                     <i class="bi bi-clock"></i> TIEMPO DE CURSO: {{ exp.total_horas }} Horas
                                 </p>
@@ -282,7 +286,7 @@
                             <div class="col-md-8 col-8">
                                 <h4 class="text-primary mb-1">Proyecto {{ exp.nombre_recurso }}</h4>
                                 <p class="text-muted small mb-0">
-                                    <i class="bi bi-calendar"></i> {{ exp.fecha_producto }}
+                                    <i class="bi bi-calendar"></i> {{ exp.fecha_producto|default:"Actualidad }}
                                 </p>
                             </div>
 
@@ -344,7 +348,7 @@
                             <div class="col-md-8 col-8">
                                 <h4 class="text-primary mb-1">Proyecto {{ exp.nombre_producto }}</h4>
                                 <p class="text-muted small mb-0">
-                                    <i class="bi bi-calendar"></i> {{ exp.fecha_producto }}
+                                    <i class="bi bi-calendar"></i> {{ exp.fecha_producto|default:"Actualidad }}
                                 </p>
                             </div>
 
